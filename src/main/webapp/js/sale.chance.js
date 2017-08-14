@@ -106,7 +106,7 @@ function deleteSaleChance(){
 function openSaleChanceModifyDialog(){
 	//判断：选中且只选中一条记录
 	var selecteRows = $("#dg").datagrid('getSelections');
-	if(selecteRows!=1){
+	if(selecteRows.length!=1){
 		$.messager.alert("提示","请选择一条要修改的记录！");
 		return
 	}
