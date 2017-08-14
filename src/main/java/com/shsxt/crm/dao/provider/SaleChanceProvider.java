@@ -38,7 +38,7 @@ public class SaleChanceProvider {
 				}
 				//开发状态
 				if (query.getDevResult() != null) {
-					AND().WHERE("devResult = #{devResult}");
+					AND().WHERE("dev_result = #{devResult}");
 				}
 			}}.toString();
 			logger.debug("查询的sql语句："+sql);

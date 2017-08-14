@@ -2,16 +2,21 @@
 $(function() {
     var saleChanceId = $("#saleChanceId").val();
     $("#dg").edatagrid({
+    	//查询开发计划
         url:'list?saleChanceId=' + saleChanceId,
+        //添加开发计划 
         saveUrl:'add?saleChanceId=' + saleChanceId,
+        //修改开发计划
         updateUrl:'update',
+        //删除
         destroyUrl:'delete',
+        
         onBeforeSave:function () {
         	// 执行前。。。
         }
     });
 });
-
+//结束机会开发
 function updateSaleChanceDevResult(devResult) {
     var param = {};
     param.saleChanceId = $("#saleChanceId").val();
@@ -30,11 +35,11 @@ function addPlan() {
 }
 
 function save() {
-	$('#dg').edatagrid('saveRow');
+	$('#dg').edatagrid('saveRow');//调用saveurl
 	$('#dg').datagrid('acceptChanges');
 	$('#dg').edatagrid('reload');
 }
-
+//删除行
 function deletePlan() {
 	$('#dg').edatagrid('destroyRow');
 }

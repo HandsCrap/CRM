@@ -1,11 +1,13 @@
 //开发计划展示
 function searchSaleChance() {
-	var data = {
-			customerName: $("#s_customerName").val(),
-			overview: $("#s_overview").val(),
-			devResult:$("#s_devResult").combobox('getValue')
-	}
-	$("#dg").datagrid('load', data);
+	var customerName=$("#s_customerName").val();
+	var overview=$("#s_overview").val();
+	var devResult=$("#s_devResult").combobox('getValue');
+	$("#dg").datagrid('reload', {
+		customerName: customerName,
+		overview:overview,
+		devResult:devResult
+	});
 }
 //格式化开发状态
 function formatDevResult(val, row) {
@@ -22,7 +24,7 @@ function formatDevResult(val, row) {
 //格式化操作状态
 function formatOptBtn(val, row) {
 	var devResult = row.devResult;
-	if (devResult < 1 ) {
+	if (devResult < 2 ) {
 		return '<a href="javascript:openDev(0, '+ row.id +')" >开发</a>';
 	} else {
 		return '<a href="javascript:openDev(1, '+ row.id +')" >查看详情</a>';
@@ -37,7 +39,7 @@ function openDev (devStatus, saleChanceId) {
 		text = "查看客户开发计划项";
 	}
 	//var url = "../cus_dev_plan/index?saleChanceId=" + saleChanceId;
-	var url = ctx + "cus_dev_plan/index?saleChanceId=" + saleChanceId + "&show=" + devStatus; 
+	var url = ctx + "cus_dev_plan/index?saleChanceId=" + saleChanceId + "&type=" + devStatus; 
 	window.parent.openTab(text, url, "icon-khkfjh");
 	
 }
