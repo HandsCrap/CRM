@@ -8,6 +8,7 @@ public class SaleChanceQuery implements Serializable{
 	private String overview; 
 	private String createMan;
 	private Integer state; // 0=未分配 1=已分配
+	private Integer devResult;//开发状态
 	private Integer rows; // 多少条
 	private Integer page; // 当前页
 	private String sort; // 排序
@@ -52,6 +53,12 @@ public class SaleChanceQuery implements Serializable{
 	}
 	public void setSort(String sort) {
 		this.sort = sort;
+	}
+	public Integer getDevResult() {
+		return devResult;
+	}
+	public void setDevResult(Integer devResult) {
+		this.devResult = devResult;
 	}
 	
 }

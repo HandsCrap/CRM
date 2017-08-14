@@ -1,3 +1,4 @@
+//开发计划展示
 function searchSaleChance() {
 	var data = {
 			customerName: $("#s_customerName").val(),
@@ -6,20 +7,19 @@ function searchSaleChance() {
 	}
 	$("#dg").datagrid('load', data);
 }
-
+//格式化开发状态
 function formatDevResult(val, row) {
-	switch (val) {
-		case 0:
-			return "未开发";
-		case 1:
-			return "开发中";
-		case 2:
-			return "开发成功";
-		case 3:
-			return "开发失败";
+	if(val==0||val==null){
+		return "未开发";
+	}else if(val==1){
+		return "开发中";
+	}else if(val==2){
+		return "开发成功";
+	}else if(val==3){
+		return "开发失败";
 	}
 }
-
+//格式化操作状态
 function formatOptBtn(val, row) {
 	var devResult = row.devResult;
 	if (devResult < 1 ) {
@@ -28,7 +28,7 @@ function formatOptBtn(val, row) {
 		return '<a href="javascript:openDev(1, '+ row.id +')" >查看详情</a>';
 	}
 }
-
+//打开开发计划详情
 function openDev (devStatus, saleChanceId) {
 	var text = "";
 	if (devStatus == 0) { // 开发

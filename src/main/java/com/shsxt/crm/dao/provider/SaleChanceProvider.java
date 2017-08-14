@@ -14,7 +14,7 @@ public class SaleChanceProvider {
 	private static Logger logger = LoggerFactory.getLogger(SaleChanceProvider.class);
 	
 	private static final String COLUMNS = "t.id, t.customer_id, t.customer_name, t.overview, t.link_man, t.link_phone, "
-			+ " t.create_man, t.create_date, t.assign_man,t.assign_time,t.state, t.cgjl, t.description, t.chance_source";
+			+ " t.create_man, t.create_date, t.assign_man,t.assign_time,t.state, t.cgjl, t.description, t.chance_source,t.dev_result";
 	public String selectForPage(final SaleChanceQuery query){
 			String sql = new SQL(){{
 				SELECT(COLUMNS);
@@ -32,9 +32,13 @@ public class SaleChanceProvider {
 				if (StringUtils.isNoneBlank(query.getCreateMan())) {
 					AND().WHERE("create_man like '%"+ query.getCreateMan() +"%'");
 				}
-				//状态
+				//分配状态
 				if (query.getState() != null) {
 					AND().WHERE("state = #{state}");
+				}
+				//开发状态
+				if (query.getDevResult() != null) {
+					AND().WHERE("devResult = #{devResult}");
 				}
 			}}.toString();
 			logger.debug("查询的sql语句："+sql);

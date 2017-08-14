@@ -7,7 +7,7 @@
 		<#--数据表格-->
 		<table id="dg" title="客户开发计划管理" class="easyui-datagrid"
 		       fitColumns="true" pagination="true" rownumbers="true"
-		       url="${ctx}/sale_chance/list?state=${state}" fit="true" toolbar="#tb">
+		       url="${ctx}/sale_chance/list?state=1" fit="true" toolbar="#tb">
 		    <thead>
 		    <tr>
 		        <th field="cb" checkbox="true" align="center"></th>

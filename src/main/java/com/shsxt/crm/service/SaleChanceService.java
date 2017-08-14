@@ -44,8 +44,9 @@ public class SaleChanceService{
 		if(StringUtils.isBlank(sort)){
 			sort="id.asc";//默认排序方式
 		}
+		//分页查询对象
 		PageBounds pageBounds = new PageBounds(page,rows,Order.formString(sort));
-		//查询数
+		//查询数据
 		List<SaleChance> saleChances = saleChanceDao.querySaleChancesForPage(query, pageBounds);
 		//将查询结果强转为分页数据
 		PageList<SaleChance> list = (PageList<SaleChance>) saleChances;
@@ -125,5 +126,8 @@ public class SaleChanceService{
 		saleChance.setAssignMan(assignMan);
 		saleChance.setAssignTime(assignTime);
 		saleChance.setState(state);
+	}
+	public SaleChance queryById(Integer saleChanceId) {
+		return saleChanceDao.querySaleChanceById(saleChanceId);
 	}
 }
