@@ -57,4 +57,7 @@ public interface SaleChanceDao {
 			+ " state=#{state},update_date = #{updateDate} where id = #{id}")
 	void updateSaleChance(SaleChance saleChance);
 	
+	@Update("update t_sale_chance set dev_result=${devResult} where saleChanceId =${saleChanceId}")
+	void updateDevResult(@Param(value="saleChanceId")Integer saleChanceId,@Param(value="devResult") int devResult);
+	
 }

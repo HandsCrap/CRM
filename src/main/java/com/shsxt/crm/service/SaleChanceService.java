@@ -130,4 +130,7 @@ public class SaleChanceService{
 	public SaleChance queryById(Integer saleChanceId) {
 		return saleChanceDao.querySaleChanceById(saleChanceId);
 	}
+	public void updateDevResult(Integer saleChanceId, Integer devResult) {
+		saleChanceDao.updateDevResult(saleChanceId,devResult);
+	}
 }
