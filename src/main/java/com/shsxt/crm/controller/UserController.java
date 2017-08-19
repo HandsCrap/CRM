@@ -3,6 +3,8 @@ package com.shsxt.crm.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,12 +24,16 @@ public class UserController extends BaseController{
 	@Autowired
 	private UserService userService;
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping("login")
 	@ResponseBody
-	public ResultInfo login(String userName,String password){
+	public ResultInfo login(String userName,String password,HttpSession session){
 		ResultInfo result = null;
-		UserLoginIdentity userLoginIdentity	=userService.login(userName,password);
-		result=success(userLoginIdentity);
+		Object[] obj	=userService.login(userName,password);
+		UserLoginIdentity userLoginIdentity = (UserLoginIdentity) obj[0];
+		result = success(userLoginIdentity);
+		List<String> permissions = (List<String>) obj[1];
+		session.setAttribute("permissions", permissions);
 		return result;
 	}
 		
@@ -36,5 +42,9 @@ public class UserController extends BaseController{
 	public List<UserVO> queryCustomerManager(){
 		List<UserVO> customerManagers = userService.queryCustomerManagers();
 		return customerManagers;
+	}
+	@RequestMapping("index")
+	public String index() {
+		return "user";
 	}
 }

@@ -16,9 +16,7 @@
                     <li>
                         <a href="javascript:void(0);" data-toggle="tab">登录</a>
                     </li>
-                    <li>
-                        <a href="javascript:void(0);" data-toggle="tab">注册</a>
-                    </li>
+                   
                 </ul>
                 <div id="myTabContent" class="tab-content bn">
                     <div class="tab-pane fade active in" id="log-in">

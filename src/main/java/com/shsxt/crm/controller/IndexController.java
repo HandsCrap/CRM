@@ -6,12 +6,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.shsxt.crm.annotation.SystemLog;
 import com.shsxt.crm.base.BaseController;
 import com.shsxt.crm.util.CookieUtil;
 
 @Controller
 public class IndexController extends BaseController{
-	
+	@SystemLog("登录页面")
 	@RequestMapping("index")
 	public String Index(){
 		return "index";

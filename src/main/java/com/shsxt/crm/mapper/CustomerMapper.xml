@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper    
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shsxt.crm.dao.CustomerDao">
+	
+	<select id="selectForPage" resultType="customer">
+		SELECT
+				id,
+				khno,
+				`name`,
+				area,
+				cus_manager,
+				LEVEL,
+				myd,
+				xyd,
+				address,
+				post_code,
+				phone,
+				fax,
+				web_site,
+				yyzzzch,
+				fr,
+				zczj,
+				nyye,
+				khyh,
+				khzh,
+				dsdjh,
+				gsdjh,
+				state,
+				is_valid,
+				create_date,
+				update_date
+			FROM
+				t_customer
+			<where>
+				is_valid = 1 
+				<if test="customerNo!=null"><!-- @Ognl@isNotEmpty(customerNo)报错 -->
+					and khno like '%${customerNo}%'
+				</if>
+				<if test="customerName!=null">
+					and NAME like '%${customerName}%'
+				</if>
+			</where>
+			order by id desc
+	</select>
+</mapper>

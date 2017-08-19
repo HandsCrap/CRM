@@ -35,17 +35,15 @@
         }
 		
 		var zNodes = [];
-		<#if modules?has_content >
-			<#list modules as module >
-				zNodes[${module_index}] = { 
-					id:${module.id?c}, 
-					pId:${module.parentId?default('0')}, 
-					name:"${module.moduleName}", 
-					open:true,
-					checked:${module.checked?string('true', 'false')}
-				};
-			</#list>
-		</#if>
+		<#list modules as module >
+			zNodes[${module_index}] = { 
+				id:${module.id?c}, 
+				pId:${module.parentId?default('0')}, 
+				name:'${module.moduleName}', 
+				open:true,
+				checked:${module.checked?string('true', 'false')}
+			};
+		</#list>
 		/*
         var zNodes =[
             { id:1, pId:0, name:"随意勾选 1", open:true},

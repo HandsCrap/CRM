@@ -9,6 +9,7 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+        
 	<!-- ========================================配置数据源========================================= -->
 	<!-- 配置数据源 -->
 	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
@@ -45,6 +46,7 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
+	
 	<!-- 设置事物增强 -->
 	<tx:advice id="txAdvice" transaction-manager="txManager">
 		<tx:attributes>
@@ -57,9 +59,10 @@
 			<tx:method name="delete*" rollback-for="Exception" />
 		</tx:attributes>
 	</tx:advice>
+	
 	<!-- 作用Shcema的方式配置事务, 这里是把事务设置到了service层 这里就用到了spring aop -->
 	<aop:config>
-		<aop:pointcut id="servicePointcut" expression="execution(* com.*.*.service.*(..))" />
+		 <aop:pointcut id="servicePointcut" expression="execution(* com.*.*.service.*.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="servicePointcut" />
 	</aop:config>
 
@@ -74,8 +77,8 @@
 		<!-- 实例化sqlSessionFactory时需要使用上述配置好的数据源以及SQL映射文件 -->
 		<property name="dataSource" ref="dataSource" />
 		<!-- 自动扫描com/shsxt/crm/mapper目录下的所有SQL映射的xml文件, 省掉mybatis.xml里的手工配置 value="classpath:com/shsxt/crm/mapper/*.xml"指的是classpath(类路径)下com.shsxt.crm.mapper包中的所有xml文件 
-			UserMapper.xml位于com.shsxt.crm.mapper包下，这样UserMapper.xml就可以被自动扫描 <property 
-			name="mapperLocations" value="classpath:com/shsxt/crm/mapper/*.xml" /> -->
+			UserMapper.xml位于com.shsxt.crm.mapper包下，这样UserMapper.xml就可以被自动扫描 -->
+		<property name="mapperLocations" value="classpath:com/shsxt/crm/mapper/*.xml" /> 
 	</bean>
 	<!-- 配置扫描器 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">

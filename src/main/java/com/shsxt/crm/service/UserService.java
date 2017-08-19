@@ -22,12 +22,14 @@ public class UserService {
 	@Autowired
 	private UserDao userDao;
 	
+	@Autowired 
+	private PermissionService permissionService;
 	
 	public List<UserVO> queryCustomerManagers(){
 		return userDao.queryCustomerManagers();
 	};
 
-	public UserLoginIdentity login(String userName, String password) {
+	public Object[] login(String userName, String password) {
 		
 		if(StringUtils.isBlank(userName)){
 			throw new ParamException("请输入用户名");
@@ -46,11 +48,12 @@ public class UserService {
 		}
 		//构建登录实体
 		UserLoginIdentity userLoginIdentity = new UserLoginIdentity();
-		userLoginIdentity.setUserName(userName);
+		userLoginIdentity.setUserName(user.getUserName());
 		userLoginIdentity.setRealName(user.getTrueName());
 		userLoginIdentity.setUserIdString(UserIDBase64.encoderUserID(user.getId()));
+		List<String> permissions = permissionService.queryUserPermissions(user.getId());
 		
-		return userLoginIdentity;
+		return new Object[]{userLoginIdentity,permissions};
 	}
 	
 }

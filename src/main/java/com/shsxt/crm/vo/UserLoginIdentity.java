@@ -27,12 +27,12 @@ public class UserLoginIdentity implements Serializable {
         this.realName = realName;
     }
 
-    public String getUserIdString() {
-        return userIdString;
-    }
+	public String getUserIdString() {
+		return userIdString;
+	}
 
-    public void setUserIdString(String userIdString) {
-        this.userIdString = userIdString;
-    }
+	public void setUserIdString(String userIdString) {
+		this.userIdString = userIdString;
+	}
 
 }

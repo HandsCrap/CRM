@@ -75,7 +75,7 @@
                         </select>
                     </td>
                 </tr>
-                <tr id="parentIdDiv">
+                <tr id="parentIdDiv" style="display:none">
                     <td>父级菜单</td>
                     <td>
                         <input type="text" id="parentId" name="parentId" class="easyui-combobox" />
